@@ -1,0 +1,8 @@
+{
+  "/page": "app/page.js",
+  "/api/sites/[siteId]/route": "app/api/sites/[siteId]/route.js",
+  "/api/sites/[siteId]/points/route": "app/api/sites/[siteId]/points/route.js",
+  "/api/sites/route": "app/api/sites/route.js",
+  "/sites/[siteId]/page": "app/sites/[siteId]/page.js",
+  "/sites/[siteId]/points/[pointId]/page": "app/sites/[siteId]/points/[pointId]/page.js"
+}

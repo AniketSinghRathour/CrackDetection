@@ -67,6 +67,9 @@ def load_image(path: str):
     else:
         img = cv2.imread(path)
 
+    if img is None:
+        raise ValueError(f"Could not load image from: {path}")
+
     return img
 
 

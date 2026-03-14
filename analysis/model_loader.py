@@ -1,7 +1,9 @@
+import os
 import torch
 import torch.nn as nn
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class UNet(nn.Module):
@@ -45,7 +47,7 @@ class UNet(nn.Module):
 
 model = UNet().to(device)
 
-checkpoint = torch.load("crack_unet_checkpoint.pth", map_location=device)
+checkpoint = torch.load(os.path.join(BASE_DIR, "crack_unet_checkpoint.pth"), map_location=device)
 
 model.load_state_dict(checkpoint)
 

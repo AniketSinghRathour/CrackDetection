@@ -1,4 +1,4 @@
-// File: C:\Users\arjun\OneDrive\文档\Desktop\front\app\sites\[siteId]\points\[pointId]\layout.js
+// File: C:\Users\arjun\OneDrive\文档\Desktop\Cd-new\dashboard\app\sites\[siteId]\points\[pointId]\layout.js
 import * as entry from '../../../../../../../app/sites/[siteId]/points/[pointId]/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

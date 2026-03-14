@@ -9,6 +9,7 @@ const nextConfig = {
     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     FASTAPI_URL: process.env.FASTAPI_URL,
+    NEXT_PUBLIC_FASTAPI_URL: process.env.FASTAPI_URL,
   },
 }
 

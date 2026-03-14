@@ -1,10 +1,16 @@
+# NOTE: torch and torchvision are installed separately in the Dockerfile
+# as CPU-only versions (~200MB instead of ~2GB GPU version).
+# If running locally, install them manually:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 fastapi
 uvicorn
-opencv-python
+opencv-python-headless
 numpy
-torch
-torchvision
 python-multipart
 scikit-image
 scipy
 requests
+langchain-core
+langchain-google-genai
+langgraph
+python-dotenv

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Plus, MapPin, Activity, AlertTriangle, CheckCircle, ChevronRight, Trash2, X, Loader2 } from 'lucide-react'
 import { formatDate, getSeverityColor } from '@/lib/utils'
+import ChatWidget from './components/ChatWidget'
 
 function StatBadge({ count, label, colorClass }) {
   return (
@@ -338,6 +339,8 @@ export default function Dashboard() {
           onCreated={(site) => setSites((prev) => [{ ...site, stats: {} }, ...prev])}
         />
       )}
+
+      <ChatWidget />
     </div>
   )
 }

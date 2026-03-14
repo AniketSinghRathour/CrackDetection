@@ -1,0 +1,9 @@
+# Ignore heavy/unnecessary files to speed up builds
+__pycache__/
+*.pyc
+.env
+.venv/
+*.egg-info/
+.git/
+.gitignore
+README.md

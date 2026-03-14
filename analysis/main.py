@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from typing import List, Optional, Dict, Any
 import cv2
 import base64
 import numpy as np
@@ -9,6 +10,7 @@ from scale import compute_scale
 from crack_metrics import crack_metrics
 from heatmap import generate_heatmap
 from utils import read_image_from_url
+from chatbot_engine import get_chat_response
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -23,11 +25,39 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+def health_check():
+    return {"status": "ok", "service": "crack-analysis-api"}
+
+
 class CrackRequest(BaseModel):
     left_path: str
     right_path: str
     baseline_mm: float
 
+
+# ── Chatbot models ──────────────────────────────────────────
+
+class ChatMessage(BaseModel):
+    role: str  # "user" or "assistant"
+    content: str
+
+
+class ChatRequest(BaseModel):
+    messages: List[ChatMessage]
+    crack_data: Optional[Dict[str, Any]] = None
+
+
+# ── Chatbot endpoint ────────────────────────────────────────
+
+@app.post("/chat")
+def chatbot_endpoint(data: ChatRequest):
+    try:
+        messages = [{"role": m.role, "content": m.content} for m in data.messages]
+        response = get_chat_response(messages, data.crack_data)
+        return {"response": response}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 def load_image(path: str):
 

@@ -5,10 +5,10 @@
 fastapi
 uvicorn
 opencv-python-headless
-numpy
+numpy<2.0
 python-multipart
-scikit-image
-scipy
+scikit-image<0.23
+scipy<1.14
 requests
 langchain-core
 langchain-google-genai

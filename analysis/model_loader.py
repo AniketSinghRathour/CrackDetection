@@ -47,7 +47,7 @@ class UNet(nn.Module):
 
 model = UNet().to(device)
 
-checkpoint = torch.load(os.path.join(BASE_DIR, "crack_unet_checkpoint.pth"), map_location=device)
+checkpoint = torch.load(os.path.join(BASE_DIR, "crack_unet_checkpoint.pth"), map_location=device, weights_only=False)
 
 model.load_state_dict(checkpoint)
 

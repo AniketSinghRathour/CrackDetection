@@ -7,8 +7,9 @@ import Image from 'next/image'
 import {
   ArrowLeft, Plus, Upload, X, Loader2, ScanLine, ChevronDown,
   ChevronUp, Calendar, Ruler, ZoomIn, ImageIcon, Activity,
-  AlertTriangle, CheckCircle2, ShieldAlert, BarChart3, Eye
+  AlertTriangle, CheckCircle2, ShieldAlert, BarChart3, Eye, Info
 } from 'lucide-react'
+import InfoGuideModal from '../../../../components/InfoGuideModal'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, ReferenceLine
 } from 'recharts'
@@ -231,6 +232,7 @@ function NewAnalysisModal({ siteId, pointId, onClose, onCreated }) {
   const [step, setStep] = useState('form') // form | uploading | analyzing | done
   const [error, setError] = useState('')
   const [result, setResult] = useState(null)
+  const [showGuide, setShowGuide] = useState(false)
 
   function handleLeftFile(file) {
     setLeftFile(file)
@@ -318,11 +320,23 @@ function NewAnalysisModal({ siteId, pointId, onClose, onCreated }) {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-subtle">
           <div>
-            <h2 className="font-display font-bold text-xl">New Crack Analysis</h2>
+            <div className="flex items-center gap-2">
+              <h2 className="font-display font-bold text-xl">New Crack Analysis</h2>
+              <button
+                type="button"
+                onClick={() => setShowGuide(true)}
+                className="w-7 h-7 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center hover:bg-accent/20 hover:border-accent/30 transition-all group"
+                title="How to use — capture guide"
+              >
+                <Info size={14} className="text-accent/70 group-hover:text-accent transition-colors" />
+              </button>
+            </div>
             <p className="text-xs text-white/40 mt-0.5">Upload stereo images to measure crack width</p>
           </div>
           <button onClick={onClose} className="btn-ghost p-2"><X size={16} /></button>
         </div>
+
+        {showGuide && <InfoGuideModal onClose={() => setShowGuide(false)} />}
 
         {step === 'done' && result ? (
           <div className="p-6 space-y-6">
